@@ -12,11 +12,13 @@ const Category = lazy(() => import("./pages/Category.jsx"));
 const Login = lazy(() => import("./pages/Login.jsx"));
 const Register = lazy(() => import("./pages/Register.jsx"));
 const Cart = lazy(() => import("./pages/Cart.jsx"));
+import {ToastContainer} from 'react-toastify';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Suspense fallback={<Loading />}>
+      <ToastContainer />
         <Header />
         <Routes>
           <Route path='/' element={<Home />} />
