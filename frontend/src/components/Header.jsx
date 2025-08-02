@@ -5,7 +5,7 @@ import { SiShopee } from "react-icons/si";
 const Header = () => {
     const [active, setActive] = useState("home");
     return (
-        <nav className='flex justify-center items-center gap-[700px] p-2 bg-purple-300'>
+        <nav className='flex justify-center items-center gap-[700px] p-2 bg-gray-950 text-white'>
             <span className='flex items-center gap-1'> <SiShopee className='text-lg' /> ECOMMERCE-APP</span>
             <ul className='flex gap-[30px]'>
                 <NavLink to="/" onClick={() => setActive("home")} className={`${active === "home" ? "border-b" : ""}`}>HOME</NavLink>
