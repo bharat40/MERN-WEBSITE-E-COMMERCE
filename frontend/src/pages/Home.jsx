@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { useAuth } from '../context/authState.jsx';
 
 const Home = () => {
+    const [auth, setAuth] = useAuth();
     return (
         <div>
             Home
+            <pre>{JSON.stringify(auth, null, 4)}</pre>
         </div>
     )
 }

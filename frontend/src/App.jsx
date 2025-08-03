@@ -12,28 +12,33 @@ const Category = lazy(() => import("./pages/Category.jsx"));
 const Login = lazy(() => import("./pages/Login.jsx"));
 const Register = lazy(() => import("./pages/Register.jsx"));
 const Cart = lazy(() => import("./pages/Cart.jsx"));
-import {ToastContainer} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import { AuthProvider } from './context/authState.jsx';
 
 const App = () => {
   return (
+
     <BrowserRouter>
-      <Suspense fallback={<Loading />}>
-      <ToastContainer />
-        <Header />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/contact' element={<Contact />} />
-          <Route path='/policy' element={<Policy />} />
-          <Route path='/category' element={<Category />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/cart' element={<Cart />} />
-          <Route path='*' element={<Error />} />
-        </Routes>
-        <Footer />
-      </Suspense>
+      <AuthProvider>
+        <Suspense fallback={<Loading />}>
+          <ToastContainer />
+          <Header />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/contact' element={<Contact />} />
+            <Route path='/policy' element={<Policy />} />
+            <Route path='/category' element={<Category />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='*' element={<Error />} />
+          </Routes>
+          <Footer />
+        </Suspense>
+      </AuthProvider>
     </BrowserRouter>
+
   )
 }
 
