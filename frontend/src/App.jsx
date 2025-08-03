@@ -14,6 +14,8 @@ const Register = lazy(() => import("./pages/Register.jsx"));
 const Cart = lazy(() => import("./pages/Cart.jsx"));
 import { ToastContainer } from 'react-toastify';
 import { AuthProvider } from './context/authState.jsx';
+import Dashboard from './pages/user/Dashboard.jsx';
+import { PrivateRoute } from './components/Routes/Private.jsx';
 
 const App = () => {
   return (
@@ -29,6 +31,9 @@ const App = () => {
             <Route path='/contact' element={<Contact />} />
             <Route path='/policy' element={<Policy />} />
             <Route path='/category' element={<Category />} />
+            <Route path='/dashboard' element={<PrivateRoute />}>
+              <Route path='' element={<Dashboard />} />
+            </Route>
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/cart' element={<Cart />} />
