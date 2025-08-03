@@ -12,9 +12,10 @@ const Category = lazy(() => import("./pages/Category.jsx"));
 const Login = lazy(() => import("./pages/Login.jsx"));
 const Register = lazy(() => import("./pages/Register.jsx"));
 const Cart = lazy(() => import("./pages/Cart.jsx"));
+const Dashboard = lazy(() => import("./pages/user/Dashboard.jsx"));
+const ForgotPassword = lazy(() => import("./pages/ForgotPassword.jsx"));
 import { ToastContainer } from 'react-toastify';
 import { AuthProvider } from './context/authState.jsx';
-import Dashboard from './pages/user/Dashboard.jsx';
 import { PrivateRoute } from './components/Routes/Private.jsx';
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
             </Route>
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/forgot-password' element={<ForgotPassword />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='*' element={<Error />} />
           </Routes>

@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 
 export const registerController = async (req, res) => {
     try {
-        const { name, email, password, phone, address } = req.body;
+        const { name, email, password, phone, address, securityQuestion } = req.body;
 
         // validations
         if (!name) {
@@ -23,6 +23,9 @@ export const registerController = async (req, res) => {
         if (!address) {
             return errorResponse(res, null, 500, "address is required");
         }
+        if (!securityQuestion) {
+            return errorResponse(res, null, 500, "security question is required");
+        }
 
         // existing user
         const user = await userModel.findOne({ email: email });
@@ -32,7 +35,7 @@ export const registerController = async (req, res) => {
 
         // register user
         const hashedPassword = await hashPassword(password);
-        const newUser = new userModel({ name: name, email: email, password: hashedPassword, phone: phone, address: address });
+        const newUser = new userModel({ name: name, email: email, password: hashedPassword, phone: phone, address: address, securityQuestion: securityQuestion });
         await newUser.save();
         return successResponse(res, 201, newUser, "User registered successfully");
     } catch (error) {
@@ -40,7 +43,6 @@ export const registerController = async (req, res) => {
         return errorResponse(res, error, 500, "Error while registering user");
     }
 };
-
 
 export const loginController = async (req, res) => {
     try {
@@ -68,3 +70,29 @@ export const loginController = async (req, res) => {
         return errorResponse(res, error, 500, "Error while logging user");
     }
 };
+
+
+export const forgotPasswordController = async (req, res) => {
+    try {
+        const { email, securityQuestion, newPassword } = req.body;
+        // validation
+        if (!email || !securityQuestion || !newPassword) {
+            return errorResponse(res, null, 500, "All fields are required");
+        }
+        const user = await userModel.findOne({ email });
+        if (!user) {
+            return errorResponse(res, null, 500, "User does not exist with this email id");
+        }
+        if (user.securityQuestion != securityQuestion) {
+            return errorResponse(res, null, 500, "Security Question Answer was wrong");
+        }
+        else {
+            const hashedPassword = await hashPassword(newPassword);
+            await userModel.findByIdAndUpdate(user._id, { password: hashedPassword });
+            return successResponse(res, 200, null, "Password reset successfull");
+        }
+    } catch (error) {
+        console.log(error);
+        return errorResponse(res, error, 500, "Something went wrong");
+    }
+}; 

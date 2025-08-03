@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import { loginController, registerController } from '../controllers/authController.js';
+import { forgotPasswordController, loginController, registerController } from '../controllers/authController.js';
 import { requireLogin, isAdmin } from "../middlewares/authMiddleware.js";
 import { successResponse } from '../utils/response.js';
 
@@ -21,5 +21,7 @@ router.get('/password-reset', requireLogin, isAdmin, (req, res) => {
 router.get('/user-auth', requireLogin, (req, res) => {
     return successResponse(res, 200, null, "authorized");
 });
+// forgot password route || POST
+router.post('/forgot-password', forgotPasswordController);
 
 export default router;

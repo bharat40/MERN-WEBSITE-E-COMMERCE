@@ -62,6 +62,7 @@ const Login = () => {
                     <label htmlFor="password">Password</label>
                     <input type="password" name="password" id="password" placeholder='Enter your password' value={password} onChange={(e) => setPassword(e.target.value)} className='border-b py-2' />
                 </div>
+                <p onClick={() => navigate('/forgot-password')} className='text-sm cursor-pointer'>Forgot password?</p>
                 <button type='submit' className='border p-2 bg-black text-white cursor-pointer transition-colors duration-500'>{loading ? "Loading..." : "Login"}</button>
             </form>
         </div>

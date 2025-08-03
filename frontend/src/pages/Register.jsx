@@ -10,19 +10,20 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
+    const [securityQuestion, setSecurityQuestion] = useState("");
     const [loading, setLoading] = useState(false);
     // form function
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        if (!name || !email || !password || !phone || !address) {
+        if (!name || !email || !password || !phone || !address || !securityQuestion) {
             setLoading(false);
             toast.error("All fields are required");
             return;
         }
         try {
             const response = await axios.post(`${import.meta.env.VITE_API}/api/v1/auth/register`, {
-                name, email, password, phone, address
+                name, email, password, phone, address, securityQuestion
             });
             if (response.data.success) {
                 toast.success(response.data.message);
@@ -40,7 +41,7 @@ const Register = () => {
         }
     }
     return (
-        <div className='flex flex-col justify-center items-center h-[620px] '>
+        <div className='flex flex-col justify-center items-center h-screen'>
             <h1 className='bg-black text-white p-3 text-2xl mb-5'>REGISTER PAGE</h1>
             <form onSubmit={handleSubmit} className='flex flex-col gap-3 w-[400px] p-4 text-black shadow shadow-black'>
                 <div className='flex flex-col gap-1'>
@@ -62,6 +63,10 @@ const Register = () => {
                 <div className='flex flex-col gap-1'>
                     <label htmlFor="address">Address</label>
                     <input type="text" name="address" id="address" placeholder='Enter your address' value={address} onChange={(e) => setAddress(e.target.value)} className='border-b py-2' />
+                </div>
+                <div className='flex flex-col gap-1'>
+                    <label htmlFor="securityQuestion">What is your pet's name? <span className='text-sm text-red-400'>(This will help recover your account if you forget your password)</span></label>
+                    <input type="text" name="securityQuestion" id="securityQuestion" placeholder='Enter your answer' value={securityQuestion} onChange={(e) => setSecurityQuestion(e.target.value)} className='border-b py-2' />
                 </div>
                 <button type='submit' className='border p-2 bg-black text-white cursor-pointer transition-colors duration-500'>{loading ? "Loading..." : "Register"}</button>
             </form>

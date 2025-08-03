@@ -23,6 +23,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    securityQuestion: {
+        type: String,
+        required: true,
+        trim: true
+    },
     role: {
         type: Boolean,
         default: false
