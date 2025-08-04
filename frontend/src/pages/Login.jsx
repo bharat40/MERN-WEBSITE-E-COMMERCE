@@ -32,7 +32,8 @@ const Login = () => {
                         email: response.data.data.email,
                         id: response.data.data.id,
                         phone: response.data.data.phone,
-                        address: response.data.data.address
+                        address: response.data.data.address,
+                        role: response.data.data.role
                     },
                     token: response.data.data.token
                 })

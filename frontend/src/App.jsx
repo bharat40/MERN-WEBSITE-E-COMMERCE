@@ -17,6 +17,8 @@ const ForgotPassword = lazy(() => import("./pages/ForgotPassword.jsx"));
 import { ToastContainer } from 'react-toastify';
 import { AuthProvider } from './context/authState.jsx';
 import { PrivateRoute } from './components/Routes/Private.jsx';
+import AdminDashboard from './pages/admin/AdminDashboard.jsx';
+import AdminRoute from './components/Routes/AdminRoute.jsx';
 
 const App = () => {
   return (
@@ -33,7 +35,10 @@ const App = () => {
             <Route path='/policy' element={<Policy />} />
             <Route path='/category' element={<Category />} />
             <Route path='/dashboard' element={<PrivateRoute />}>
-              <Route path='' element={<Dashboard />} />
+              <Route path='user' element={<Dashboard />} />
+            </Route>
+            <Route path='/dashboard' element={<AdminRoute />}>
+              <Route path='admin' element={<AdminDashboard />} />
             </Route>
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />

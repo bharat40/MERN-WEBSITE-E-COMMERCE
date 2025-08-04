@@ -21,6 +21,10 @@ router.get('/password-reset', requireLogin, isAdmin, (req, res) => {
 router.get('/user-auth', requireLogin, (req, res) => {
     return successResponse(res, 200, null, "authorized");
 });
+// admin route || auth
+router.get('/admin-auth', requireLogin, isAdmin, (req, res) => {
+    return successResponse(res, 200, null, "Admin Authorized");
+})
 // forgot password route || POST
 router.post('/forgot-password', forgotPasswordController);
 

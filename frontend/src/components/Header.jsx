@@ -41,7 +41,7 @@ const Header = () => {
                             {
                                 isOpen && (
                                     <div className='absolute flex flex-col bg-black text-gray-300 w-max p-2'>
-                                        <NavLink onClick={() => setIsOpen(false)} to="/dashboard" className="hover:text-gray-100">Dashboard</NavLink>
+                                        <NavLink onClick={() => setIsOpen(false)} to={auth.user.role === true ? "/dashboard/admin" : "/dashboard/user"} className="hover:text-gray-100">Dashboard</NavLink>
                                         <NavLink onClick={() => setIsOpen(false)} to="forgot-password" className="hover:text-gray-100">Reset Password</NavLink>
                                         <NavLink onClick={handleLogout} className={`${active === "logout" ? "border-b" : "hover:text-gray-100 flex gap-2 items-center"}`}>{loading ? "Loading..." : "Logout"}<IoLogOutOutline className='text-lg' /></NavLink>
                                     </div>

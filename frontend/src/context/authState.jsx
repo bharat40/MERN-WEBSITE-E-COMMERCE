@@ -21,7 +21,8 @@ const AuthProvider = ({ children }) => {
                     email: parsedData.data.email,
                     id: parsedData.data.id,
                     phone: parsedData.data.phone,
-                    address: parsedData.data.address
+                    address: parsedData.data.address,
+                    role: parsedData.data.role
                 },
                 token: parsedData.data.token
             });

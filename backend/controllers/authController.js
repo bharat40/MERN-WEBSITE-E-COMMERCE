@@ -64,7 +64,7 @@ export const loginController = async (req, res) => {
             return errorResponse(res, null, 500, "Password is wrong");
         }
         const jwtToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, { expiresIn: '1hr' });
-        return successResponse(res, 200, { id: user._id, name: user.name, email: user.email, phone: user.phone, address: user.address, token: jwtToken }, "user logged in successfully");
+        return successResponse(res, 200, { id: user._id, name: user.name, email: user.email, phone: user.phone, address: user.address, token: jwtToken, role: user.role }, "user logged in successfully");
     } catch (error) {
         console.log(error);
         return errorResponse(res, error, 500, "Error while logging user");
