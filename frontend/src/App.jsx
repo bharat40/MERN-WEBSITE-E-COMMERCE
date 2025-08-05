@@ -14,11 +14,16 @@ const Register = lazy(() => import("./pages/Register.jsx"));
 const Cart = lazy(() => import("./pages/Cart.jsx"));
 const Dashboard = lazy(() => import("./pages/user/Dashboard.jsx"));
 const ForgotPassword = lazy(() => import("./pages/ForgotPassword.jsx"));
+const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard.jsx'));
+const AdminRoute = lazy(() => import('./components/Routes/AdminRoute.jsx'));
+const CreateCategory = lazy(() => import('./pages/admin/CreateCategory.jsx'));
+const CreateProduct = lazy(() => import('./pages/admin/CreateProduct.jsx'));
+const Users = lazy(() => import('./pages/admin/Users.jsx'));
+const Profile = lazy(() => import('./pages/user/Profile.jsx'));
+const Orders = lazy(() => import('./pages/user/Orders.jsx'));
 import { ToastContainer } from 'react-toastify';
 import { AuthProvider } from './context/authState.jsx';
 import { PrivateRoute } from './components/Routes/Private.jsx';
-import AdminDashboard from './pages/admin/AdminDashboard.jsx';
-import AdminRoute from './components/Routes/AdminRoute.jsx';
 
 const App = () => {
   return (
@@ -36,9 +41,14 @@ const App = () => {
             <Route path='/category' element={<Category />} />
             <Route path='/dashboard' element={<PrivateRoute />}>
               <Route path='user' element={<Dashboard />} />
+              <Route path='user/profile' element={<Profile />} />
+              <Route path='user/orders' element={<Orders />} />
             </Route>
             <Route path='/dashboard' element={<AdminRoute />}>
               <Route path='admin' element={<AdminDashboard />} />
+              <Route path='admin/create-category' element={<CreateCategory />} />
+              <Route path='admin/create-product' element={<CreateProduct />} />
+              <Route path='admin/users' element={<Users />} />
             </Route>
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />

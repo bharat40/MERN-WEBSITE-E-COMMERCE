@@ -1,15 +1,15 @@
-import React from 'react'
-import UserMenu from '../../components/UserMenu.jsx';
+import React from 'react';
+import UserMenu from '../../components/UserMenu';
 
-const Dashboard = () => {
+const Orders = () => {
     return (
         <div className='flex justify-center gap-[300px] p-2 h-screen'>
             <UserMenu />
             <div>
-                content
+                Orders Page
             </div>
         </div>
     )
 }
 
-export default Dashboard;
+export default Orders

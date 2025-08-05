@@ -1,15 +1,17 @@
 import React from 'react'
-import UserMenu from '../../components/UserMenu.jsx';
+import UserMenu from '../../components/UserMenu'
 
-const Dashboard = () => {
+const Profile = () => {
     return (
+
         <div className='flex justify-center gap-[300px] p-2 h-screen'>
             <UserMenu />
             <div>
-                content
+                Profile Page
             </div>
         </div>
+
     )
 }
 
-export default Dashboard;
+export default Profile
