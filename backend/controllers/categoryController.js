@@ -1,5 +1,5 @@
 import { successResponse, errorResponse } from '../utils/response.js';
-import categoryModel from '../models/CategoryModel.js';
+import categoryModel from '../models/categoryModel.js';
 
 export const createCategoryController = async (req, res) => {
     try {
